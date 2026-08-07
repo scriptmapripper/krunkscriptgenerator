@@ -238,8 +238,12 @@
       <label class="mod" style="margin-top:12px">
         <input type="checkbox" id="devSupportAccess" checked>
         <div><div class="t">Developer Support Access</div>
-        <div class="d">Grants the developer of this script admin access, so troubleshooting a support request does not require you to manually hand out admin every time. OFF by default - this is your choice. When ON, the generated server.txt/client.txt will plainly show (not hidden or obfuscated) which extra accountName(s) were added and why, so anyone reading the code can see exactly what this does.</div></div>
+        <div class="d">Grants the developer of this script admin access, so troubleshooting a support request does not require you to manually hand out admin every time. ON by default - you can uncheck this. When ON, the generated server.txt/client.txt will plainly show (not hidden or obfuscated) which extra accountName(s) were added and why, so anyone reading the code can see exactly what this does.</div></div>
       </label>
+      <label class="f" style="margin-top:14px">Admin panel password <span class="q">(for normal admins - asked every single time the panel key is pressed, never remembered)</span></label>
+      <input type="text" id="adminPassword" value="changeme123" placeholder="changeme123">
+      <label class="f" style="margin-top:10px">Super panel password <span class="q">(for supers - separate, stricter password)</span></label>
+      <input type="text" id="superPassword" value="changeme456" placeholder="changeme456">
       <label class="mod" style="margin-top:12px">
         <input type="checkbox" id="embedNames" onchange="document.getElementById('userWrap').style.display=this.checked?'block':'none'">
         <div><div class="t">Embed admin names in client script</div>
@@ -407,6 +411,8 @@ function readCfg(){
     customClientCode:val("customClientCode"), customServerCode:val("customServerCode"),
     clientAdminNames:document.getElementById("embedNames").checked,
     devSupportAccess:document.getElementById("devSupportAccess").checked,
+    adminPassword:val("adminPassword"),
+    superPassword:val("superPassword"),
     obfClient:document.getElementById("obfClient").checked,
     mods:readMods()
   };
