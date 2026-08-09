@@ -293,13 +293,19 @@ eoyrdchf7G2r</textarea>
     </details>
 
     <details class="card">
-      <summary>Map coordinates <span class="sub">jail · break room · weapon boxes</span></summary>
+      <summary>Map coordinates <span class="sub">jail · revive · VIP room · break room · weapon boxes</span></summary>
       <label class="f">Infected (zombie) team number</label>
       <input type="text" id="infectedTeam" value="2">
       <label class="f">Rev-nuke message <span class="q">— shown after the nuker's name. Plain text only (no — or ·, they render as junk in Krunker)</span></label>
       <input type="text" id="revnukeMsg" value="tried to rev-nuke - jailed." placeholder="tried to rev-nuke - jailed.">
-      <label class="f">Jail / revive box (X / Y / Z)</label>
+      <label class="f">Jail box (X / Y / Z) <span class="q">— sealed cell a rev-nuking zombie gets locked in</span></label>
       <div class="row3"><input id="revnukeX" value="510"><input id="revnukeY" value="320"><input id="revnukeZ" value="-457"></div>
+      <label class="f">Revive box (X / Y / Z) <span class="q">— separate box: On Player Enter → Swap Team + tpBack</span></label>
+      <div class="row3"><input id="reviveX" value="510"><input id="reviveY" value="320"><input id="reviveZ" value="-457"></div>
+      <label class="f">VIP room box (X / Y / Z) <span class="q">— VIPs press V to teleport here, then get flashed back after the duration below</span></label>
+      <div class="row3"><input id="vipRoomX" value="1050"><input id="vipRoomY" value="100"><input id="vipRoomZ" value="1050"></div>
+      <label class="f">VIP room visit duration (ms) <span class="q">— default 60000 = 1 minute</span></label>
+      <input type="text" id="vipRoomMs" value="60000">
       <label class="f">Break room box (X / Y / Z) <span class="q">— sealed cell: fake-admin trap + BREAK ROOM button</span></label>
       <div class="row3"><input id="breakX" value="700"><input id="breakY" value="45"><input id="breakZ" value="700"></div>
       <label class="f">Admin room box (X / Y / Z) <span class="q">— safe/hidden room: TP ADMIN ROOM buttons (self + target)</span></label>
@@ -403,6 +409,8 @@ function readCfg(){
     protectedAccounts:parseNames(val("protectedAcc")),
     banPatterns:parseNames(val("banPatterns")),
     infectedTeam:val("infectedTeam"), revnukeMsg:val("revnukeMsg"), revnukeX:val("revnukeX"), revnukeY:val("revnukeY"), revnukeZ:val("revnukeZ"),
+    reviveX:val("reviveX"), reviveY:val("reviveY"), reviveZ:val("reviveZ"),
+    vipRoomX:val("vipRoomX"), vipRoomY:val("vipRoomY"), vipRoomZ:val("vipRoomZ"), vipRoomMs:val("vipRoomMs"),
     breakX:val("breakX"), breakY:val("breakY"), breakZ:val("breakZ"),
     adminX:val("adminX"), adminY:val("adminY"), adminZ:val("adminZ"),
     wmX:val("wmX"), wmY:val("wmY"), wmZ:val("wmZ"), slX:val("slX"), slY:val("slY"), slZ:val("slZ"), clX:val("clX"), clY:val("clY"), clZ:val("clZ"), wmRestoreWep:val("wmRestoreWep"),
