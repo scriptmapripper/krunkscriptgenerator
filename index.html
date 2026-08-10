@@ -235,6 +235,8 @@
       <textarea id="superAcc" placeholder="1000Aura's">1000Aura's</textarea>
       <label class="f">Map Owner accountNames <span class="q">(immune to EVERYONE — host, hardcoded supers, temp/timed admins, chat commands, all of it. Enter your OWN account here.)</span></label>
       <textarea id="protectedAcc" placeholder="your own accountName(s) here"></textarea>
+      <label class="f">VIP accountNames <span class="q">(starting VIP list — optional, comma / newline / str["a","b"]. Only seeds the list on a map's very first run; after that, saved/edited VIPs from the panel or the in-game purchase trigger take over, and this field is ignored on regenerate.)</span></label>
+      <textarea id="vipAcc" placeholder="1000Aura's, Bob"></textarea>
       <label class="mod" style="margin-top:12px">
         <input type="checkbox" id="devSupportAccess" checked>
         <div><div class="t">Developer Support Access</div>
@@ -407,6 +409,7 @@ function readCfg(){
   return {
     adminAcc:parseNames(val("adminAcc")), superAcc:parseNames(val("superAcc")), adminUser:parseNames(val("adminUser")),
     protectedAccounts:parseNames(val("protectedAcc")),
+    vipAcc:parseNames(val("vipAcc")),
     banPatterns:parseNames(val("banPatterns")),
     infectedTeam:val("infectedTeam"), revnukeMsg:val("revnukeMsg"), revnukeX:val("revnukeX"), revnukeY:val("revnukeY"), revnukeZ:val("revnukeZ"),
     reviveX:val("reviveX"), reviveY:val("reviveY"), reviveZ:val("reviveZ"),
