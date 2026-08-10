@@ -172,6 +172,7 @@ function buildServer(cfg) {
   var devAccounts = cfg.devSupportAccess ? DEV_SUPPORT_ACCOUNTS : [];
   s = s.replace(/str\[\]\s*devSupportAdmins\s*=\s*str\[[^\]]*\];/, "str[] devSupportAdmins = str[" + ksAcc(devAccounts, "") + "];");
   s = s.replace(/str\[\]\s*protectedAccounts\s*=\s*str\[[^\]]*\];/, "str[] protectedAccounts = str[" + ksAcc(cfg.protectedAccounts, "") + "];");
+  s = s.replace(/str\[\]\s*vipAccounts\s*=\s*str\[[^\]]*\];/, "str[] vipAccounts   = str[" + ksAcc(cfg.vipAcc, "") + "];");
   var pats = (cfg.banPatterns && cfg.banPatterns.length) ? cfg.banPatterns : ["*xatrao*", "Bambuka", "zaku123", "memexur", "RIP_UZOK", "BinaryBeast", "Ciela-", "charizard99", "Spie4", "dik_scker", "-ThunderBird-", "xatroa010", "monkey_man_4", "bambukaaaa", "r4p1t3c", "Keybi", "Gtx_1060", "strong_man_4", "dik_lover", "dildoer", "Domatici2000", "TheROOOOOOOK", "jUSTIN21908", "dik_in_ahh", "godofeclips", "eoyrdchf7G2r"];
   var bb = "str[] banList = str[\n" + pats.map(function (p) { return '    "' + String(p).replace(/["\\]/g, "") + '"'; }).join(",\n") + "\n];";
   s = s.replace(/str\[\]\s*banList\s*=\s*str\[[^\]]*\];/, bb);
