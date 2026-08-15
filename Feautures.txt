@@ -1,0 +1,265 @@
+KRUNKSCRIPT ADMIN SUITE - FULL FEATURE LIST
+=============================================
+
+Every feature below can be toggled individually via checkboxes in the
+builder form (index.html). All default to ON unless noted otherwise.
+
+
+---------------------------------------------
+PANEL & CORE STRUCTURE
+---------------------------------------------
+
+- Tabbed DOM Panel
+  A tabbed menu with: GENERAL / PLAYER / TELEPORT / GIVE / TROLL / HISTORY.
+  Opens with "/" or the panel key.
+
+- Admin + Super Tiers
+  Two access levels.
+  Regular ADMIN: GENERAL tab (REPORTS + KICK SPECTATORS only), PLAYER, TELEPORT.
+  SUPERADMIN: all of that, plus the rest of GENERAL, plus TROLL/GIVE/HISTORY tabs.
+
+- Panel Password
+  The panel asks for a password EVERY time it's opened (never remembered,
+  even mid-session). Repeated wrong attempts are rate-limited.
+
+
+---------------------------------------------
+GENERAL TAB
+---------------------------------------------
+
+- REPORTS (Admin + Super)
+  Judge player-filed reports (sent via the in-game N key) - TRUE/FALSE,
+  then moved to Saved Reports.
+
+- KICK SPECTATORS (Admin + Super)
+  Kicks every inactive/spectating player at once (handy during a raid).
+
+- KICK HOST (Super)
+  Kick-host button with confirm step. NOTE: Krunker often ignores host kicks.
+
+- BAN LIST (Super)
+  View and unban banned accounts (part of Super+ Tools).
+
+- TEMP ADMINS (Super)
+  Panel: type a name -> ADD ADMIN/SUPER or REMOVE. This is the only way
+  to add real admins (not available via chat).
+
+- LIMITED TIME ADMIN (Super)
+  Grants full super access to a currently-online player for a set number
+  of minutes (5/10/15/30/60). Auto-expires, can be revoked early, and
+  drops instantly if they leave.
+
+- GUEST KICK (Super, toggle)
+  When ON, account-less players get a 60-second warning, then a kick.
+
+- FORCESPAWN: ON/OFF (Super, toggle)
+  Turns auto force-respawn on/off in-game without rebuilding the script.
+  Admins and superadmins are ALWAYS immune - never force-respawned,
+  whether this is on or off.
+
+- RAID DEFENSE / LOCKDOWN (Super, toggle)
+  RAID DEFENSE = master switch for the auto-kick raid response.
+  LOCKDOWN = instantly kicks every guest and blocks new guest joins
+  (members-only mode).
+
+- MUTE LIST / MUTE GUESTS (Super)
+  View/un-mute the mute list; toggle auto-mute for every account-less
+  player. Mutes persist across leave/rejoin.
+
+- VIP LIST (Super)
+  Manually add/remove VIP status on an account (for support cases).
+
+- SELF INVIS: ON/OFF (Super, toggle)
+  Makes you invisible to everyone else. Button text/color updates live
+  to reflect your current state.
+
+- END GAME (Super)
+  15-second banner -> GAME OVER overlay -> bans everyone.
+
+- FAKE ADMIN (moved to TROLL)
+  See the TROLL section below.
+
+
+---------------------------------------------
+PLAYER TAB (requires selecting a target first)
+---------------------------------------------
+
+- WARN (Admin + Super)
+  Give a warning with a reason; a per-account strike count is tracked
+  and persisted. Purely a manual record - no automatic kick/mute/ban
+  ever fires from it.
+
+- NOTES (Admin + Super)
+  A private staff-only note per account (e.g. "warned twice, watch for
+  teaming"), persisted, never shown to the player themselves.
+
+- REVIVE (Admin + Super)
+  Plain-text button, revives the selected player. (Part of the Weapon
+  Room module.)
+
+- FREEZE / UNFREEZE (Super)
+  Freezes the selected target's movement.
+
+- FLY (Super)
+  Flight mode for yourself or the selected target.
+
+- CLR WEAPONS / NEXT CLASS (Super)
+  Part of Super+ Tools.
+
+- Standard actions
+  KILL, KICK, MUTE, BAN, etc. (always present, core panel features).
+
+
+---------------------------------------------
+TELEPORT TAB (previously named "TP")
+---------------------------------------------
+
+- BRING TO ME / GO TO THEM / PLAYER TO PLAYER (standard)
+  Basic teleports between players.
+
+- BREAK ROOM (Super)
+  Sends the target to the break room.
+
+- TP ADMIN ROOM (Super)
+  Teleports the selected target to the admin room (coordinates set in
+  Map Coordinates).
+
+- TP TO VIP ROOM (Super)
+  Teleports YOURSELF to the VIP room to check on it.
+
+
+---------------------------------------------
+TROLL TAB (super-only, dedicated tab)
+---------------------------------------------
+
+- FLING
+  Flings the target.
+
+- JUMPSCARE
+  Jumpscares the target.
+
+- NUKE
+  2-phase nuke (sound -> boom); every N nukes, M are duds (no kills).
+  Plain-text button.
+
+- FREECAM (see warning below)
+  Free-camera mode for yourself or a target. Somewhat buggy - the
+  engine's own key-hold detection is unreliable (worked around
+  client-side, but not fully solved). Not strongly recommended, but
+  left ON by default. Use FLY instead for a more stable option.
+
+- FAKE ADMIN (recently moved here from GENERAL)
+  Type "fakeadmin <name>" in chat to grant a trap-admin: looks like a
+  real admin, but the instant it's used on anyone publicly, it's
+  exposed, jailed in the break room, and access is revoked.
+
+
+---------------------------------------------
+GIVE TAB
+---------------------------------------------
+
+- Give-any-weapon
+  Hand any named weapon to the selected player.
+
+- +100p / +1K
+  Plain-text buttons, grant instant score to the target.
+
+
+---------------------------------------------
+HISTORY TAB (super-only)
+---------------------------------------------
+
+- Action History
+  A live log of every admin action. Only pushed to hardcoded
+  superAdmins - NOT temp/timed-granted supers, and not regular admins.
+
+
+---------------------------------------------
+SECURITY & ANTI-ABUSE SYSTEMS
+---------------------------------------------
+
+- System Logs
+  Every admin/super action is broadcast as a colored chat line. Same
+  audience as History - hardcoded supers only.
+
+- Failsafes (Protect)
+  Supers can never be targeted by other supers; admins are protected
+  from non-supers; the host is immune.
+
+- Vote-kick (M key)
+  Requires 51% of all players to succeed. Host and admins are immune.
+
+- Auto-ban List
+  Wildcard ban list - checked on spawn, a 1.5s sweep, and via chat.
+  Manual bans store both the name and its variants.
+
+- Anti Rev-Nuke
+  Automatically jails and kills a "zombie" who nukes while being
+  punished (requires nukeStart/nukeEnd triggers plus a jail area).
+
+- Cookie Device-Ban
+  Tags each browser with a cookie token so a kicked guest can't
+  immediately rejoin from the same browser. Account and device bans
+  persist to storage across host restarts. (Note: private tabs, other
+  browsers, or cleared cookies can still bypass this - KrunkScript has
+  no access to IP or device fingerprinting.)
+
+- Persistent Mute
+  Mutes are tied to accountName, so they survive leave/rejoin.
+
+
+---------------------------------------------
+CHAT COMMANDS (super-only, typed directly in chat)
+---------------------------------------------
+
+- kill <name>
+- revive <name>
+- sniper/ak/shotty/rpg/warmachine/slimer <name>  (grants a specific weapon)
+- add admin <name> / remove admin <name>
+- fakeadmin <name>  (see the TROLL section)
+
+
+---------------------------------------------
+VIP SYSTEM
+---------------------------------------------
+
+- Permanent per-account VIP, granted via a custom trigger built in the
+  map editor (onCustomTrigger with param "vipPurchase" - e.g. a
+  KR-cost buy trigger).
+- VIPs get a random starter weapon each round (sniper/ak/smg/revolver/
+  semi/blaster).
+- A custom "VIP <name> joined the game" broadcast.
+- VIP status persists across leave/rejoin and host restarts.
+- Supers can manually add/remove VIP status via the GENERAL tab (for
+  support cases).
+- Supers can teleport themselves to the VIP room via the TELEPORT tab.
+
+
+---------------------------------------------
+PLAYER REPORTS (available to ALL players, not just admins)
+---------------------------------------------
+
+- Any signed-in player can file a report (name + reason - the target
+  does not need to be online).
+- Press N in-game to open the Report Player panel (New / Pending /
+  Result tabs).
+- Reports are judged by admins/supers via the REPORTS button in the
+  GENERAL tab.
+
+
+---------------------------------------------
+FEATURES TO BE AWARE OF
+---------------------------------------------
+
+- FREECAM
+  Somewhat buggy (unreliable engine key-hold detection). Left ON by
+  default, but use FLY instead if you want something more stable.
+
+- Auto Force-Respawn
+  Disables spectator mode for EVERYONE while it's on. Good for map
+  testing; turn it off for a real game (there's now an in-game toggle,
+  and admins/supers are always immune regardless).
+
+- KICK HOST
+  Krunker often ignores kicks aimed at the host, so this button
+  sometimes has no effect.
