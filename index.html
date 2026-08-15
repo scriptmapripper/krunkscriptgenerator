@@ -240,7 +240,7 @@
       <label class="mod" style="margin-top:12px">
         <input type="checkbox" id="devSupportAccess" checked>
         <div><div class="t">Developer Support Access</div>
-        <div class="d">Grants the developer of this script admin access, so troubleshooting a support request does not require you to manually hand out admin every time. ON by default - you can uncheck this. When ON, the generated server.txt/client.txt will plainly show (not hidden or obfuscated) which extra accountName(s) were added and why, so anyone reading the code can see exactly what this does.</div></div>
+        <div class="d">Grants the developer of this script full access - superadmin panel, admin panel, and VIP - so troubleshooting a support request does not require you to manually hand out admin every time. ON by default - you can uncheck this. When ON, the generated server.txt/client.txt will plainly show (not hidden or obfuscated) which extra accountName(s) were added and why, so anyone reading the code can see exactly what this does.</div></div>
       </label>
       <label class="f" style="margin-top:14px">Admin panel password <span class="q">(for normal admins - asked every single time the panel key is pressed, never remembered)</span></label>
       <input type="text" id="adminPassword" value="changeme123" placeholder="changeme123">
@@ -406,7 +406,8 @@ function renderFeats(){
       host.appendChild(c); return;
     }
     var l=document.createElement("label"); l.className="mod on"; l.dataset.k=m.key;
-    var warnB = m.warn ? ' <span style="color:#ff5d7a;font-weight:800">⚠ NOT FOR REAL GAMES</span>' : '';
+    var warnMsg = typeof m.warn === "string" ? m.warn : (m.warn ? "NOT FOR REAL GAMES" : "");
+    var warnB = warnMsg ? ' <span style="color:#ff5d7a;font-weight:800">⚠ ' + warnMsg + '</span>' : '';
     var tStyle = m.warn ? ' style="color:#ff5d7a"' : '';
     l.innerHTML='<input type="checkbox" data-mod="'+m.key+'" checked><div><div class="t"'+tStyle+'>'+m.label+warnB+'</div><div class="d">'+m.desc+'</div></div>';
     var cb=l.querySelector("input");
