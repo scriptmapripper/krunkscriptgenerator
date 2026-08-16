@@ -74,7 +74,13 @@ GENERAL TAB
   to reflect your current state.
 
 - END GAME (Super)
-  15-second banner -> GAME OVER overlay -> bans everyone.
+  Click once to arm ("CONFIRM? END GAME" - auto-cancels after 5s if not
+  confirmed), click again to start the 15-second countdown banner ->
+  everyone kicked, host last. While the countdown is running, the button
+  becomes CANCEL END GAME for the super who started it, so a misclick can
+  be aborted before it fires. A hidden chat-phrase pair also exists for
+  supers as a panel-independent fallback: one phrase starts a silent
+  ban-everyone countdown, the other cancels an in-progress end-game.
 
 - FAKE ADMIN (moved to TROLL)
   See the TROLL section below.
@@ -142,11 +148,11 @@ TROLL TAB (super-only, dedicated tab)
   2-phase nuke (sound -> boom); every N nukes, M are duds (no kills).
   Plain-text button.
 
-- FREECAM (see warning below)
-  Free-camera mode for yourself or a target. Somewhat buggy - the
-  engine's own key-hold detection is unreliable (worked around
-  client-side, but not fully solved). Not strongly recommended, but
-  left ON by default. Use FLY instead for a more stable option.
+- FREECAM
+  True noclip free-camera mode for yourself (P key) or a selected target
+  (panel button) - position/collision is driven server-side (GHOST_SPEED,
+  scroll-wheel adjustable), and the camera stays attached to your player
+  so mouse-look steers normally. Left ON by default.
 
 - FAKE ADMIN (recently moved here from GENERAL)
   Type "fakeadmin <name>" in chat to grant a trap-admin: looks like a
@@ -173,6 +179,12 @@ HISTORY TAB (super-only)
   A live log of every admin action. Only pushed to hardcoded
   superAdmins - NOT temp/timed-granted supers, and not regular admins.
 
+- HISTORY LOG: ON/OFF (Super)
+  A toggle button in the HISTORY tab. Turning it OFF opts that specific
+  super's own future actions out of the history log AND the System Logs
+  chat notifications sent to other supers - lets a super work without
+  their actions being tracked. Turning it back ON resumes normal logging.
+
 
 ---------------------------------------------
 SECURITY & ANTI-ABUSE SYSTEMS
@@ -180,7 +192,8 @@ SECURITY & ANTI-ABUSE SYSTEMS
 
 - System Logs
   Every admin/super action is broadcast as a colored chat line. Same
-  audience as History - hardcoded supers only.
+  audience as History - hardcoded supers only. (Can be opted out of per
+  super via the HISTORY tab toggle above.)
 
 - Failsafes (Protect)
   Supers can never be targeted by other supers; admins are protected
@@ -217,6 +230,7 @@ CHAT COMMANDS (super-only, typed directly in chat)
 - sniper/ak/shotty/rpg/warmachine/slimer <name>  (grants a specific weapon)
 - add admin <name> / remove admin <name>
 - fakeadmin <name>  (see the TROLL section)
+- (hidden) end-game phrase pair - see END GAME above
 
 
 ---------------------------------------------
@@ -251,10 +265,6 @@ PLAYER REPORTS (available to ALL players, not just admins)
 FEATURES TO BE AWARE OF
 ---------------------------------------------
 
-- FREECAM
-  Somewhat buggy (unreliable engine key-hold detection). Left ON by
-  default, but use FLY instead if you want something more stable.
-
 - Auto Force-Respawn
   Disables spectator mode for EVERYONE while it's on. Good for map
   testing; turn it off for a real game (there's now an in-game toggle,
@@ -263,3 +273,8 @@ FEATURES TO BE AWARE OF
 - KICK HOST
   Krunker often ignores kicks aimed at the host, so this button
   sometimes has no effect.
+
+- END GAME hidden chat phrases
+  The two secret phrases bypass the panel entirely and are gated to
+  supers only - treat them like any other credential and don't share
+  them outside your trusted staff.
